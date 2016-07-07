@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo -e "--------------------------------------------------"
+echo -e "Start-Up ... \n"
+echo -e "./Doc-Browser [no-params]"
+./Doc-Browser
+echo -e "\nDone"
+echo -e "--------------------------------------------------"
+

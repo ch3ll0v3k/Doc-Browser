@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# ==================================================================================
+echo -e "============================================================"
+echo -e " Configuring ..."
+time res=$(python ./pyinstaller/makespec.py \
+--onefile \
+--icon=./browser-data/imgs/Docs-Browser.png \
+--paths=/usr/lib/python2.7/dist-packages/PyQt4/ \
+--windowed ./Doc-Browser) 
+
+#echo $res | grep wrote
+
+echo -e "\n Done\n To compile run: ./compile\n"
+echo -e "============================================================"
+
+# ==================================================================================

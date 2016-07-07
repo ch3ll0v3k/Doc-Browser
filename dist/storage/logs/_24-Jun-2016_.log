@@ -1,0 +1,372 @@
+[ 00:15:29.906273 ] - [ I ] ::: ##########################################################################################
+[ 00:15:29.906977 ] - [ I ] ::: Doc-Browser: INIT:
+[ 00:15:29.907354 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 00:15:29.907633 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 00:15:29.907974 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 00:15:30.342205 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 00:15:30.440025 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 00:15:30.504635 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 00:15:30.504897 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 00:15:30.756298 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [4.68026590347] Sec
+
+[ 00:15:30.963831 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 01:21:29.707361 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 01:21:30.009035 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 01:21:30.020841 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 01:21:30.183250 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 01:21:30.197715 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 01:21:30.759495 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 01:21:30.832782 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 01:21:31.554536 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 01:21:31.745229 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 01:23:55.500417 ] - [ I ] ::: ##########################################################################################
+[ 01:23:55.539375 ] - [ I ] ::: Doc-Browser: INIT:
+[ 01:23:55.539610 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 01:23:55.539773 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 01:23:55.539931 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 01:23:55.947728 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 01:23:55.997303 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 01:23:56.063108 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 01:23:56.063426 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 01:23:56.273592 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [3.92623996735] Sec
+
+[ 01:23:56.523204 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 01:28:43.293696 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download started: allelements.xml]
+[ 01:28:47.297714 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download finished: allelements.xml]
+[ 02:53:35.729606 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 02:53:36.039701 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 02:53:36.040025 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 02:53:36.169980 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 02:53:36.202269 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 02:53:36.994411 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 02:53:37.046989 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 02:53:37.762083 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 02:53:37.924329 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 02:54:27.916378 ] - [ I ] ::: ##########################################################################################
+[ 02:54:27.934901 ] - [ I ] ::: Doc-Browser: INIT:
+[ 02:54:27.935117 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 02:54:27.935277 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 02:54:27.935433 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 02:54:28.408910 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 02:54:28.500950 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 02:54:28.540216 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 02:54:28.540449 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 02:54:28.923782 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [4.35106801987] Sec
+
+[ 02:54:29.189974 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 02:56:44.267383 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 02:57:34.929392 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 02:58:09.164481 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 02:58:47.686870 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 04:41:50.988306 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 04:41:51.090858 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 04:41:51.091171 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 04:41:51.125424 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 04:41:51.128464 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 04:41:51.452157 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 04:41:51.452988 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 04:41:51.604033 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 04:41:51.673041 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 14:43:36.665668 ] - [ I ] ::: ##########################################################################################
+[ 14:43:36.723341 ] - [ I ] ::: Doc-Browser: INIT:
+[ 14:43:36.723554 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 14:43:36.723714 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 14:43:36.723870 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 14:43:37.186384 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 14:43:37.238378 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 14:43:37.281682 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 14:43:37.281914 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 14:43:37.709007 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [4.09631586075] Sec
+
+[ 14:43:37.903655 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 15:00:23.406880 ] - [ E ] ::: ['DOC_BROWSER']: ['CMD_MANAGER']: [CMD_MANAGER: [PROCCESS]: [unknown cmd | wrong format]]
+[ 15:16:00.930068 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 15:16:01.144101 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 15:16:01.175240 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 15:16:01.398233 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 15:16:01.444338 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 15:16:01.951384 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 15:16:02.254230 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 15:16:02.752611 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 15:16:03.021046 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 15:17:34.031728 ] - [ I ] ::: ##########################################################################################
+[ 15:17:34.032072 ] - [ I ] ::: Doc-Browser: INIT:
+[ 15:17:34.032268 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 15:17:34.032471 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 15:17:34.032631 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 15:17:34.453059 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 15:17:34.496263 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 15:17:34.505953 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 15:17:34.506169 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 15:17:34.659385 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [3.33414697647] Sec
+
+[ 15:17:34.845247 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 15:40:24.405662 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download finished: pa0rdt-Mini-Whip.pdf]
+[ 15:40:32.252948 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download started: pa0rdt-Mini-Whip.pdf]
+[ 15:40:38.321196 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download finished: Article_pa0rdt-Mini-Whip_English.pdf]
+[ 15:40:46.358482 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download started: Article_pa0rdt-Mini-Whip_English.pdf]
+[ 16:01:35.116088 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 16:01:35.406148 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 16:01:35.406384 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 16:01:35.525515 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 16:01:35.563639 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 16:01:36.050194 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 16:01:36.187775 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 16:01:36.736583 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 16:01:36.964985 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 16:02:08.217695 ] - [ I ] ::: ##########################################################################################
+[ 16:02:08.217939 ] - [ I ] ::: Doc-Browser: INIT:
+[ 16:02:08.218023 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 16:02:08.218085 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 16:02:08.218148 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 16:02:08.545870 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 16:02:08.570516 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 16:02:08.580009 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 16:02:08.580219 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 16:02:08.625101 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [2.53910398483] Sec
+
+[ 16:02:08.767611 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 16:26:39.482209 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 16:26:43.505799 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 16:55:14.037315 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 16:55:14.101401 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 16:55:14.119934 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 16:55:14.234880 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 16:55:14.235148 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 16:55:14.757352 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 16:55:14.795431 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 16:55:14.942722 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 16:55:15.089118 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 17:13:26.222837 ] - [ I ] ::: ##########################################################################################
+[ 17:13:26.275703 ] - [ I ] ::: Doc-Browser: INIT:
+[ 17:13:26.275915 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 17:13:26.276075 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 17:13:26.276231 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 17:13:26.725634 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 17:13:26.776147 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 17:13:26.822015 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 17:13:26.822247 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 17:13:27.159608 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [3.30009102821] Sec
+
+[ 17:13:27.354207 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 17:45:45.587290 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 18:21:23.135603 ] - [ I ] ::: ##########################################################################################
+[ 18:21:23.187962 ] - [ I ] ::: Doc-Browser: INIT:
+[ 18:21:23.188176 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 18:21:23.188337 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 18:21:23.188495 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 18:21:23.644730 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 18:21:23.688415 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 18:21:23.734318 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 18:21:23.734582 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 18:21:24.053710 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [4.0103468895] Sec
+
+[ 18:21:24.267530 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 18:24:39.718097 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 18:24:39.718506 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 18:24:39.718592 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 18:24:39.745751 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 18:24:39.745854 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 18:24:39.905172 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 18:24:39.905643 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 18:24:40.032074 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 18:24:40.032439 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 18:32:29.086109 ] - [ I ] ::: ##########################################################################################
+[ 18:32:29.144488 ] - [ I ] ::: Doc-Browser: INIT:
+[ 18:32:29.145290 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 18:32:29.145848 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 18:32:29.146283 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 18:32:29.596759 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 18:32:29.644729 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 18:32:29.695101 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 18:32:29.695335 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 18:32:30.038448 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [3.96761894226] Sec
+
+[ 18:32:30.237001 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 18:38:04.189613 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 18:38:36.415185 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 18:39:13.388059 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host cs.meltdsp.com not found]
+[ 18:39:47.929976 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host urls.api.twitter.com not found]
+[ 18:51:40.817249 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 18:51:40.817817 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 18:51:40.818012 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 18:51:40.837612 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 18:51:40.837896 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 18:51:41.091468 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 18:51:41.093449 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 18:51:41.264693 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 18:51:41.278133 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 19:00:39.346535 ] - [ I ] ::: ##########################################################################################
+[ 19:00:39.346758 ] - [ I ] ::: Doc-Browser: INIT:
+[ 19:00:39.346843 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 19:00:39.346908 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 19:00:39.346973 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 19:00:39.514398 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 19:00:39.517737 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 19:00:39.521849 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 19:00:39.521958 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 19:00:39.546414 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [1.74028110504] Sec
+
+[ 19:00:39.607560 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 19:05:18.743712 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [0]
+	FILE: ['/m-sys/Doc-Browser/modules/file_manager.py', '201']
+	DESC: ['OSError', '[Errno 2] No such file or directory: '//http://bobfilm1.net'']]
+[ 19:05:35.406810 ] - [ E ] ::: ['DOC_BROWSER']: ['FILE_MANAGER.PROCCESS_FILE[0]']: [[Errno 2] No such file or directory: '//http://bobfilm1.net']
+[ 19:10:03.414148 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host www.x-sec.info not found]
+[ 19:10:11.417099 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host x-sec.info not found]
+[ 19:10:15.477517 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host x-sec.info not found]
+[ 19:39:14.150340 ] - [ I ] ::: ['DOC_BROWSER']: ['DOWNLOAD_MANAGER']: [Download: Aborted: [sorted_unfound_md5.txt.gz]]
+[ 19:51:57.597652 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:01.728508 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:05.730467 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:09.732249 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:45.739154 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:49.741523 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:53.743425 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:52:57.745861 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:53:01.747989 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 19:53:05.750123 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 20:48:47.621463 ] - [ W ] ::: ['DOC_BROWSER']: ['REQUEST_HANDLER']: [Host  not found]
+[ 20:49:44.094885 ] - [ E ] ::: ['DOC_BROWSER']: ['CMD_MANAGER']: [CMD_MANAGER: [PROCCESS]: [unknown cmd | wrong format]]
+[ 20:52:29.777881 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [2]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''6b6bd0'']]
+[ 20:52:33.780366 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [1]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''6b6bd0'']]
+[ 20:52:37.783550 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['6b6bd0']
+[ 20:52:41.787039 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['6b6bd0']
+[ 21:09:18.357971 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 21:09:18.813871 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 21:09:18.864587 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 21:09:19.117870 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 21:09:19.162057 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 21:09:21.007566 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 21:09:21.429085 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 21:09:22.411945 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 21:09:22.905346 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 21:19:05.383535 ] - [ I ] ::: ##########################################################################################
+[ 21:19:05.410840 ] - [ I ] ::: Doc-Browser: INIT:
+[ 21:19:05.411236 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 21:19:05.411578 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 21:19:05.411857 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 21:19:05.864564 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 21:19:05.923815 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 21:19:05.968940 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 21:19:05.969175 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 21:19:06.301050 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [3.93787813187] Sec
+
+[ 21:19:06.571693 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 22:00:24.023532 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [0]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''894da2'']]
+[ 22:00:30.765174 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['894da2']
+[ 22:00:38.367247 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [1]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''6556aa'']]
+[ 22:00:42.370296 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['6556aa']
+[ 22:01:37.051186 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [2]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''894da2'']]
+[ 22:01:41.105837 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['894da2']
+[ 22:03:57.666754 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [3]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''be5bd8'']]
+[ 22:04:03.669981 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['be5bd8']
+[ 22:21:53.821905 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 22:21:54.174621 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 22:21:54.203649 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 22:21:54.334339 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 22:21:54.378410 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 22:21:54.892892 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 22:21:54.943236 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 22:21:55.576596 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 22:21:55.876486 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 22:25:20.297832 ] - [ I ] ::: ##########################################################################################
+[ 22:25:20.321882 ] - [ I ] ::: Doc-Browser: INIT:
+[ 22:25:20.322137 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 22:25:20.322298 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 22:25:20.322453 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 22:25:20.762473 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 22:25:20.833453 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 22:25:20.889240 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 22:25:20.889583 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 22:25:21.109085 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [4.10786008835] Sec
+
+[ 22:25:21.505239 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 22:52:31.337057 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 22:52:31.776790 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 22:52:31.798188 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 22:52:31.920294 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 22:52:31.940323 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 22:52:32.550763 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 22:52:32.689804 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 22:52:33.484958 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 22:52:33.731850 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 22:53:42.530112 ] - [ I ] ::: ##########################################################################################
+[ 22:53:42.557202 ] - [ I ] ::: Doc-Browser: INIT:
+[ 22:53:42.557451 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 22:53:42.557614 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 22:53:42.557771 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 22:53:43.049867 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 22:53:43.118689 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 22:53:43.158277 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 22:53:43.158509 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 22:53:43.484095 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [4.79721093178] Sec
+
+[ 22:53:43.680317 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 22:54:24.875442 ] - [ W ] ::: ['DOC_BROWSER']: ['DEBUGGER']: [--------------------------------------------------------
+Exception: NR: [0]
+	FILE: ['/m-sys/Doc-Browser/modules/web_view.py', '210']
+	DESC: ['KeyError', ''c2cffe'']]
+[ 22:54:28.878847 ] - [ E ] ::: ['DOC_BROWSER']: ['WEB_VIEW.ON_LOAD_FINISHED']: ['c2cffe']
+[ 22:55:39.572766 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 22:55:39.573340 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 22:55:39.573588 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 22:55:39.575016 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 22:55:39.575217 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 22:55:39.829040 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 22:55:39.830006 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 22:55:39.908406 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 22:55:39.909069 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+
+[ 22:57:08.483424 ] - [ I ] ::: ##########################################################################################
+[ 22:57:08.483643 ] - [ I ] ::: Doc-Browser: INIT:
+[ 22:57:08.483725 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: 
+[ 22:57:08.483789 ] - [ I ] ::: Doc-Browser: SETTINGS: LOAD: Done
+[ 22:57:08.483853 ] - [ I ] ::: Doc-Browser: COOKIE: Loading 
+[ 22:57:08.662457 ] - [ I ] ::: Doc-Browser: COOKIE: Done
+[ 22:57:08.665788 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: 
+[ 22:57:08.669854 ] - [ I ] ::: Doc-Browser: NOTEBOOK: LODE: Done
+[ 22:57:08.669955 ] - [ I ] ::: Doc-Browser: Loading: /m-sys/Doc-Browser/storage/favorite.file
+[ 22:57:08.677770 ] - [ I ] ::: Doc-Browser: INIT: DONE IN: [0.675687074661] Sec
+
+[ 22:57:08.736784 ] - [ I ] ::: ['DOC_BROWSER']:  Welcome ... [INIT]: Done
+[ 01:33:27.827657 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: 
+[ 01:33:28.228555 ] - [ I ] ::: Doc-Browser: SETTINGS: SAVE: Done
+[ 01:33:28.228820 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: 
+[ 01:33:28.378991 ] - [ I ] ::: Doc-Browser: NOTEBOOK: SAVE: Done
+[ 01:33:28.397549 ] - [ I ] ::: Doc-Browser: COOKIE: Saving 
+[ 01:33:28.962820 ] - [ I ] ::: Doc-Browser: COOKIE: Done 
+[ 01:33:28.972588 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving tmp files:
+[ 01:33:29.300078 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Remiving Objects:
+[ 01:33:29.498652 ] - [ I ] ::: Doc-Browser: CLEAN_UP: Done
+

@@ -1,0 +1,217 @@
+// ------------------------------------------------------
+src:h:/m-sys/_Doc-Browser.bak_/build_info/pyinstaller/COPYING.txt
+
+// ------------------------------------------------------
+// FTP:
+
+ftp://ftp.deb-multimedia.org
+ftp://ftp.debian.org/debian/
+
+ftp://ftp.debian.org/debian/pool/main/n/nano/nano_2.2.6-1+b2_armhf.deb
+
+// ------------------------------------------------------
+
+# KALI-REM
+http://docs.kali.org/community/kali-linux-mirrors
+http://http.kali.org/kali/dists/
+
+
+// ------------------------------------------------------
+//  PyQt 
+http://pyqt.sourceforge.net/Docs/PyQt4/qt.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qtnetwork.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qnetworkreply.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qnetworkaccessmanager.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qlistwidgetitem.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qframe.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qwebview.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qwebpage.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qevent.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qtextedit.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qurl.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qwebframe.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qtabwidget.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qaction.html
+http://pyqt.sourceforge.net/Docs/PyQt4/qwebinspector.html
+
+
+// ------------------------------------------------------
+http://airspy.com/?ddownload=3761
+http://rfidiot.org/
+https://uk.passion-radio.com/gb/sdr-transceivers/hackrf-sdr-75.html
+// ------------------------------------------------------
+# INTERNAL: CMD
+
+__exec:home
+
+__exec:page:exec:js:function_name
+__exec:page:exec:js:alert( document.cookie );
+__exec:page:exec:js:document.body.innerHTML = '<i>hello world</i>'
+__exec:page:get:user-agent
+__exec:page:set:user-agent:string
+
+__exec:download_manager:wget:url
+__exec:download_manager:abort:(UID|all)
+__exec:download_manager:download_window:show
+__exec:download_manager:download_window:keep_open
+
+__exec:request_handler:headers:show
+__exec:request_handler:headers:hide
+__exec:request_handler:headers:keep_open:(0|1)
+
+__exec:settings:window:show
+__exec:settings:window:hide
+__exec:settings:window:keep_open:(0|1)
+
+__exec:notebook:notes:show
+__exec:notebook:notes:hide
+__exec:notebook:notes:keep_open:(0|1)
+
+__exec:file_manager:show_hidden_files:(0|1)
+__exec:file_manager:show_files_first:(0|1)
+
+
+
+// ------------------------------------------------------
+// For-Test
+
+http://wrong.domain
+
+// zip
+TEST-http://solutionfile.trendmicro.com/SolutionFile/EN-1114221/RansomwareFileDecryptor 1.0.1569 MUI.zip
+
+// pdf
+TEST-https://community.rapid7.com/servlet/JiveServlet/downloadBody/3163-102-5-8012/msf-installation-guide.pdf
+
+// 2x mp[4] steram
+TEST-http://lb.zenfm.be/zenfm.mp3
+TEST-http://mp3.streampower.be/stubru-low.mp3
+
+// -> text file no:[content-length]
+TEST-https://yadi.sk/d/kwUghHY33fcvK
+
+www.andytimmons.com/video.php?id=0006
+
+
+// ------------------------------------------------------
+// SQL
+
+http://ujuzi.de/video.php?id=16
+https://darktime.ru/area.php?mode=go&r=1&d=3
+
+//  ------------------------------------------------------
+https://github.com/mwarning/PyQt4-Examples/tree/master/webftpclient
+http://srinikom.github.io/pyside-docs/PySide/QtWebKit/QWebView.html
+// http://gamedev.stackexchange.com/questions/76142/libgdx-rotation-animation-arrays-issues-and-help-needed
+https://github.com/libgdx/libgdx/wiki
+https://github.com/libgdx/libgdx/wiki/Orthographic-camera
+// https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/OrthographicCamera.html
+https://libgdx.badlogicgames.com/nightlies/docs/api/
+http://android-holo-colors.com/
+http://androidonrocks.com/
+http://www.tutorialspoint.com/android/index.htm
+http://www.tutorialspoint.com/java/index.htm
+https://developer.xamarin.com/recipes/android/resources/general/style_a_button/
+// http://stackoverflow.com/questions/18507351/how-to-create-custom-button-in-android-using-xml-styles
+http://developer.android.com/reference/android/view/View.html
+https://www.google.com/design/spec/resources/layout-templates.html
+http://developer.android.com/reference/packages.html
+http://androiddrawables.com/
+https://design.google.com/icons/
+http://developer.android.com/intl/es/design/downloads/index.html
+http://developer.android.com/intl/es/reference/android/R.drawable.html
+
+//  ------------------------------------------------------
+/home/toor/
+
+/m-sys/Doc-Browser/
+/m-sys/Doc-Browser/downloads/
+
+/m-sys/prog/
+/m-sys/prog-proj/
+
+/m-sys/music/
+
+/m-sys/x/
+/m-sys/x/kali-tools/MSF/
+/m-sys/x/hosting/
+/m-sys/x/hosting/karumba.site88.net/
+/m-sys/x/hosting/karumba.site88.net/public/js/cat_3/
+/m-sys/x/web/
+
+//  ------------------------------------------------------
+// Favs:
+https://github.com/ch3ll0v3k/
+https://ch3ll0v3k.github.io/
+https://ch3ll0v3k.github.io/android/
+https://ch3ll0v3k.github.io/android/apps/
+https://ch3ll0v3k.github.io/android/apps/WIMPD/
+
+http://karumba.site88.net/public/
+http://karumba.site88.net/statistic.php?show
+
+https://ebay.co.uk/
+http://geektimes.ru/
+https://habrahabr.ru
+http://programmersforum.ru/
+https://facebook.com/
+https://youtube.com/
+https://www.youtube.com/user/submarineboat
+http://stackoverflow.com
+http://us.aliexpress.com/home.htm
+https://greatscottgadgets.com/hackrf/
+https://greatscottgadgets.com/sdr/1/
+
+https://www.exploit-db.com/
+https://yandex.ru/
+http://pdalife.ru/
+http://4pda.ru/forum/index.php?act=idx
+http://textcraft.net
+https://forum.antichat.ru/
+http://project-rainbowcrack.com/table.htm
+http://cmd5.ru/
+https://rdot.org/forum/showthread.php?p=11829
+
+http://kronus.me/cn/wso-builder/1.04/
+http://krober.biz/misc/obfuscator.php
+https://play.google.com/apps/publish/?hl=en&dev_acc=11444484727589583577
+
+//  ------------------------------------------------------
+//  MSF ->>>
+
+http://apt.metasploit.com/dists/wheezy/InRelease
+http://apt.metasploit.com/
+https://www.rapid7.com/products/metasploit/download.jsp
+https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers
+https://community.rapid7.com/docs/DOC-3163
+https://github.com/CoreSecurity/impacket
+
+//  ------------------------------------------------------
+//  DORKS
+DORK:inurl:/view/viewer_index.shtml [cams]
+
+//  ------------------------------------------------------
+https://hashcat.net/forum/thread-1236.html
+https://github.com/danielmiessler/SecLists/blob/master/Passwords/merged.txt.tar.gz
+https://crackstation.net/buy-crackstation-wordlist-password-cracking-dictionary.htm
+
+https://www.tobtu.com/md5.php
+http://hashcrack.blogspot.be/p/wordlist-downloads_29.html
+http://blog.g0tmi1k.com/2011/06/dictionaries-wordlists/?redirect
+
+//  ------------------------------------------------------
+https://github.com/igorpecovnik/lib/wiki/Allwinner-hardware-conf
+https://github.com/igorpecovnik/lib/blob/next/documentation/general-faq.md
+
+http://mirror.igorpecovnik.com/Armbian_4.4_Pcduino3nano_Debian_wheezy_3.4.109.zip
+http://mirror.igorpecovnik.com/Armbian_4.5_Pcduino3nano_Debian_wheezy_3.4.109.zip
+http://mirror.igorpecovnik.com/Armbian_5.00_Pcduino3nano_Debian_wheezy_3.4.110.zip
+http://mirror.igorpecovnik.com/Armbian_5.00_Pcduino3nano_Debian_wheezy_4.4.1.zip
+http://mirror.igorpecovnik.com/Armbian_5.14_Pcduino3nano_Debian_jessie_3.4.112.7z
+http://mirror.igorpecovnik.com/Armbian_5.14_Pcduino3nano_Debian_jessie_4.6.2.7z
+//  ------------------------------------------------------
+// local-server
+
+http://127.0.0.1/
+http://localhost/
+

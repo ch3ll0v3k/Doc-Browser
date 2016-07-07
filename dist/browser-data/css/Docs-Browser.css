@@ -1,0 +1,86 @@
+body{
+    margin: 0; padding: 0; overflow: hidden;
+}
+
+#browser-box{
+
+    width: 1020px; height: 615px; display: block; background-color: #111; /*#8F908A;*/ color: #333; overflow: hidden;
+
+    /*
+    self.SUB_GRAY = "#8F908A";
+    self.SUB_BG_1 = "#272822";
+    self.SUB_BG_2 = "#3E3D32"; 
+    */
+
+
+}
+
+#nav-box{
+    width: 1020px; height: 30px; display: block; background-color: #000; color: #fff; padding-left: 5px;
+    overflow: hidden; line-height: 30px; margin-top: 1px;
+
+}
+
+
+#seach_input{
+
+    float: left; width: 540px; height: 10px; padding-left: 10px; padding-top: 20px; margin: 20px 0 0 220px;
+    border: solid 0px #999; line-height: 10px; 
+    color: #fff; font-family: monospace; font-size: 18px; background-color: #000; 
+    /*
+        box-shadow: 0px 0px 5px #fff;
+        border-radius: 0px;
+    */
+    border-bottom: solid 1px #999; 
+
+}
+
+/* ---------------------------------------------------------------------------- */
+#quick-link-box{
+
+    float: left; width: 950px; display: block; margin: 20px 0 0 30px;
+    padding-bottom: 10px; border-top: dashed 2px #666; border-bottom: dashed 2px #666;
+    /*
+    box-shadow: 0 0 5px 1px #0F0;
+    */
+}
+
+
+.quick-link-holder{
+    position: relative; float: left; overflow: hidden;
+}
+
+.quick-link{ /* Square image-link */
+
+    float: left; display: block;
+    width: 130px; height: 100px; margin: 10px; overflow: hidden;
+    border-radius: 0px; background-color: #fff; border: solid 4px #000;
+    /*
+    background-image: url('../imgs/Docs-Browser.png'); background-repeat: no-repeat;
+    */
+}
+
+.quick-link:hover{
+    box-shadow: 0 0 5px 1px #fff; cursor: pointer;
+
+}
+
+.quick-link-img{
+    width: 130px;/* display: block;*/
+}
+
+.quick-link-descr{
+    position: absolute; float: left; width: 130px; height: 20px; padding-left: 10px;
+    margin-top: 0px;
+    color: #F00; background-color: #00F; 
+}
+
+/* ---------------------------------------------------------------------------- */
+
+#mini-console-output{
+
+    float: left; width: 950px; display: block; margin: 0px 0 0 30px;
+    padding: 10px; border-top: solid 1px #666; color: #fff;
+
+
+}

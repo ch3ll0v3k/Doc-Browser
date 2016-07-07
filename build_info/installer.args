@@ -1,0 +1,20 @@
+// -------------------------------------------------------------------
+cd /m-sys/Doc-Browser/
+
+// -------------------------------------------------------------------
+python /m-sys/_soft/x86/dev-tools/pyinstaller/pyinstaller.py \
+--clean \
+--onefile \
+--icon=./browser-data/imgs/Docs-Browser.png \
+--paths=/usr/lib/python2.7/dist-packages/PyQt4/ \
+--windowed ./Doc-Browser.spec
+
+// -------------------------------------------------------------------
+python /m-sys/_soft/x86/dev-tools/pyinstaller/makespec.py \
+--clean \
+--onefile \
+--icon=./browser-data/imgs/Docs-Browser.png \
+--paths=/usr/lib/python2.7/dist-packages/PyQt4/ \
+--windowed ./Doc-Browser
+
+// -------------------------------------------------------------------

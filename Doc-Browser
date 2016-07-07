@@ -1,0 +1,1171 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+###################################################################################################
+# Built IN
+import json, time, os, httplib, urllib, urllib2, hashlib
+import hashlib, magic, mimetypes
+
+from random import randint
+from threading import Timer, _sleep
+from sys import stdout
+from time import sleep, time, ctime, strftime, localtime
+from datetime import datetime
+
+#--------------------------------------------------------------------------------------------------
+mimetypes.init();
+
+#--------------------------------------------------------------------------------------------------
+# -> 'ascii' codec can't encode characters in position 220-223: ordinal not in range(128)
+import sys
+#reload(sys);
+#sys.setdefaultencoding('utf-8');
+
+#--------------------------------------------------------------------------------------------------
+# OyQt
+from PyQt4.QtCore import QTimer, QThread, QEvent, SIGNAL, SLOT, pyqtSignal, pyqtSlot
+from PyQt4.QtCore import QObject, QSize, QByteArray, QUrl, Qt, QPointF, QPoint, QRectF, QRect, QString
+from PyQt4.QtCore import QTextCodec
+
+
+from PyQt4.QtGui import QMessageBox, QTextEdit, QDialog, QTabWidget, QTabBar, QStyleOptionTabWidgetFrame
+from PyQt4.QtGui import QPolygonF, QPainter, QPen, QColor, QImage, QBrush, QFont, QIcon, QPixmap
+from PyQt4.QtGui import QMainWindow, QWidget, QToolTip, QApplication, QAction, QLineEdit, QLabel
+from PyQt4.QtGui import QFrame, QListWidget,QListWidgetItem, QComboBox, QCheckBox, QPushButton, QProgressBar
+from PyQt4.QtGui import QTextBrowser, QCursor, qApp, QDesktopWidget, QGraphicsView, QGraphicsScene, QPicture
+from PyQt4.QtGui import QSplashScreen, QMovie, QPaintDevice, QSizePolicy
+
+from PyQt4.QtGui import QDoubleValidator, QRadioButton, QButtonGroup, QHBoxLayout, QVBoxLayout
+from PyQt4.QtGui import QLCDNumber, QFileDialog
+
+#from PyQt4 import QtWebKit  
+from PyQt4.QtWebKit import QWebView, QWebPage, QWebSettings, QWebHistory
+
+# -> http://pyqt.sourceforge.net/Docs/PyQt4/qtnetwork.html
+from PyQt4.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
+from PyQt4.QtNetwork import QNetworkCookie, QNetworkCookieJar
+
+#--------------------------------------------------------------------------------------------------
+from modules.debugger import Debugger
+from modules.download_manager import Download_Manager
+from modules.url_bar import Url_Bar
+from modules.history_handler import History_Handler
+from modules.web_view import Web_View
+from modules.web_page import Web_Page
+from modules.request_handler import Request_Handler
+from modules.ftp_handler import FTP_Handler
+from modules.settings import Settings
+from modules.notebook import NoteBook
+from modules.log_handler import Log_Handler
+from modules.file_manager import File_Manager
+from modules.cmd_manager import CMD_Manager
+from modules.mime_handler import Mime_Handler
+
+
+# QtCore.QTextCodec.setCodecForTr(QtCore.QTextCodec.codecForName("utf-8"))
+#QTextCodec.setCodecForTr( QTextCodec.codecForName("utf-8") );
+
+###################################################################################################
+class Doc_Browser(QFrame):
+
+    # =======================================================================
+    def __init__(self, _Splash, parent=None):
+
+        # -------------------------------------------------------------------
+        QFrame.__init__(self, parent);
+
+        # -------------------------------------------------------------------
+        self.DEBUG_GLOBAL                           = True;
+        self.DEBUG                                  = True;
+        # -------------------------------------------------------------------
+        self.START_TIME                             = time();
+        self.SPLASH                                 = _Splash;
+
+        self.SYNC_T = QTimer( self );
+        self.SYNC_T.singleShot( self.SPLASH.R_SPEED, self.SYNC );
+
+        # -------------------------------------------------------------------
+        self.LOG_TAG                                = str(self.__class__.__name__).upper();
+        self.ABSPATH                                = os.path.dirname(os.path.abspath(__file__))+"/";
+        self.BROWSER_DATA_PATH                      = self.ABSPATH+"browser-data/"
+        self._MD5                                   = hashlib.md5;
+
+        self.WIDTH                                  = 1020;
+        self.HEIGHT                                 = 675;
+        self.MOUSE_X                                = 0; 
+        self.MOUSE_Y                                = 0; 
+
+        self.ICON                                   = self.BROWSER_DATA_PATH+"imgs/Docs-Browser.png";
+
+        self.setGeometry( 0, 0, self.WIDTH, self.HEIGHT );
+        self.setStyleSheet( "QFrame{ font-size: 12px; font-family: monospace; color: #000; background-color: #333; }" );
+        self.setWindowTitle("Docs-Browser");
+        self.setWindowIcon( QIcon(self.ICON) );
+
+        qApp.setStyle("Windowsxp"); # "Windows", "Motif", "Cde", "Plastique", "Windowsxp", "Macintosh"
+
+        self.setFixedSize( self.WIDTH, self.HEIGHT );
+        self.FLAGS = [
+            Qt.Drawer, Qt.SplashScreen, Qt.FramelessWindowHint, Qt.Tool, Qt.Desktop, Qt.Widget, Qt.Window, Qt.Dialog ];
+        
+        self.setWindowFlags( self.FLAGS[5]  );
+
+        #self.setWindowFlags(Qt.Dialog & Qt.WindowMinimizeButtonHint);
+        #self.setWindowFlags(self.windowFlags() | Qt.Window | Qt.WindowMinimizeButtonHint);
+        #self.setWindowFlags(Qt.WindowMaximizeButtonHint);
+
+        self.setMouseTracking(True);
+        #self.showFullScreen();
+        #self.showNormal();
+
+        # -------------------------------------------------------------------
+        self.CURRENT_TAB_BAR_UID                    = "";
+        self.TAB_BAR                                = QTabWidget( self );
+        #self.TAB_BAR                                = QTabBar( self );
+        self.TAB_BAR.setGeometry( 0, 32, self.WIDTH, 614 );
+        self.TAB_BAR.setStyleSheet('QTabBar { font-size: 12px; font-family: monospace; color: #333; background-color: #0F0; margin: 0px; padding: 0px;  }');
+
+        self.TAB_BAR.currentChanged.connect( self.TAB_INDEX_CHANGED );
+        #self.TAB_BAR.tabMoved.connect( self.TAB_MOVED );
+
+
+        self.NEW_TAB_ACTION                         = QAction( self );
+        self.NEW_TAB_ACTION.setShortcut( "CTRL+T" );
+        self.NEW_TAB_ACTION.triggered.connect( self.CREATE_TAB );
+        self.addAction( self.NEW_TAB_ACTION );
+
+        self.CLOSE_TAB_ACTION                       = QAction( self );
+        self.CLOSE_TAB_ACTION.setShortcut( "CTRL+W" );
+        self.CLOSE_TAB_ACTION.triggered.connect( self.CLOSE_TAB );
+        self.addAction( self.CLOSE_TAB_ACTION );
+
+        self.TAB_STYLE = '''
+
+            QWidget{ 
+                border-style: none; background-color: #000; color: #fff; font-size: 12px; font-family: monospace; margin: 0px; padding: 0px; 
+        
+            }
+
+            QWidget::item:hover {
+                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FAFBFE, stop: 1 #DCDEF1);
+                background-color: #000; color: #0F0;
+            }
+
+
+
+        '''
+
+
+        """
+        #self.TAB_BAR.setTabShape( self.TAB_BAR.Rounded );
+        TAB_STYLE = QStyleOptionTabWidgetFrame();
+        TAB_STYLE.tabBarSize = QSize(60, 60);
+        TAB_STYLE.leftCornerWidgetSize = QSize(60, 60);
+        TAB_STYLE.rightCornerWidgetSize = QSize(1, 1);
+
+        QSize leftCornerWidgetSize
+        int lineWidth
+        int midLineWidth
+        QSize rightCornerWidgetSize
+        QTabBar.Shape shape
+        QSize tabBarSize
+        self.MAIN_TABS.initStyleOption( TAB_STYLE );
+        """
+
+        # -------------------------------------------------------------------
+        """
+        self.TAB_0 = QFrame( self );
+        self.TAB_0.setGeometry( 3, 5, 975, 555 );
+        self.TAB_0.setStyleSheet( 'QFrame{ background-color: #0F0; margin: 5px; }' );
+        self.TAB_BAR.addTab( self.TAB_0, "TAB[0]" );
+
+        self.TAB_1 = QFrame( self );
+        self.TAB_1.setGeometry( 3, 5, 975, 555 );
+        self.TAB_1.setStyleSheet( 'QFrame{ background-color: #F00; margin: 5px; }' );
+        self.TAB_BAR.addTab( self.TAB_1, "TAB[1]" );
+
+        self.TAB_2 = QFrame( self );
+        self.TAB_2.setGeometry( 3, 5, 975, 555 );
+        self.TAB_2.setStyleSheet( 'QFrame{ background-color: #00F; margin: 5px; }' );
+        self.TAB_BAR.addTab( self.TAB_2, "TAB[2]" );
+        """
+
+        # -------------------------------------------------------------------
+
+        """
+        self.TAB_BAR = QTabBar(self);
+        self.TAB_BAR.setGeometry( 5, 0, 985, 630 ); # (5, 35, 985, 595) 
+        #self.TAB_BAR.setTabShape(self.TAB_BAR.Rounded);
+        self.TAB_BAR.setStyleSheet('QTabBar { font: 16px "monospace"; color: #333; background-color: transparent; padding-top: 5px; padding-bottom: 5px; font-weight: bold;  }');
+        
+
+        self.TAB_BAR.addTab(self.TAB_Office, "Office");
+        self.TAB_BAR.setTabIcon(4, QIcon("./data/imgs/TAB_Office_icon.png"));
+        self.TAB_BAR.setTabToolTip(4, "Account Asisstance.");
+        """
+
+        # -------------------------------------------------------------------
+        self.SUB_G = "#A6E22E";
+        self.SUB_R = "#F92672";
+        self.SUB_P = "#AE81FF";
+        self.SUB_B = "#66D9EF";
+        self.SUB_Y = "#E6DB74";
+
+        self.SUB_GRAY = "#8F908A";
+        self.SUB_BG_1 = "#272822";
+        self.SUB_BG_2 = "#3E3D32"; 
+        # -------------------------------------------------------------------
+
+        self.ROOT_DIR                               = "/m-sys/Doc-Browser/";
+
+        self.STORAGE_ROOT                           = self.ROOT_DIR+"storage/";
+        self.DATA_DIR                               = self.ROOT_DIR+"browser-data/";
+        self.COOKIES_DIR                            = self.STORAGE_ROOT+"cookie/";
+        self.LOGS_DIR                               = self.STORAGE_ROOT+"logs/";
+        self.COOKIES_FILE                           = self.COOKIES_DIR+"cookie.file";
+        self.FAVORITES_FILE                         = self.STORAGE_ROOT+"favorite.file";
+        self.LAST_URL_ADDR                          = "";
+
+        # FIXME: Correct downlad location
+
+        self.DOWNLOAD_DIR                           = self.ROOT_DIR+"downloads/";
+        self.TMP_DIR                                = self.ROOT_DIR+"tmp/";
+
+        self.DESKTOP                                = QDesktopWidget();
+        self.SCREEN                                 = self.DESKTOP.screenGeometry();
+
+        # -------------------------------------------------------------------
+        self.DEBUG                                  = False;
+        self.DEBUGGER                               = Debugger( self );
+        self.MIME_HANDLER                           = Mime_Handler( self );
+        self.FTP                                    = FTP_Handler( self );
+        self.REQUEST_HANDLER                        = Request_Handler( self );
+        self.NET_MANAGER                            = QNetworkAccessManager();
+        self.NET_MANAGER.finished.connect( self.REQUEST_HANDLER.REQUEST_FINISHED );
+        self.DOWNLOAD_MANAGER                       = Download_Manager( self )
+
+        # -------------------------------------------------------------------
+        self.WEB_VIEW                               = None;
+        self.WEB_PAGE                               = None;
+
+        self.TAB_BARS                               = {};
+        self.WEB_VIEWS                              = {};
+
+        self.CREATE_TAB();
+
+        # -------------------------------------------------------------------
+        self.FOOTER_FRAME                           = QFrame( self );
+        self.FOOTER_FRAME.setGeometry(0, 645, self.WIDTH, 30);
+        self.FOOTER_FRAME.setStyleSheet("QFrame{ background-color: #000; }");
+
+        # STATUS-BAR
+        self.STATUS_BAR                             = QLineEdit("", self.FOOTER_FRAME ); 
+        self.STATUS_BAR.setGeometry(0, 0, 860, 30);
+        self.STATUS_BAR.setStyleSheet("QLineEdit{ background-color: #000; font-size: 12px; font-family: monospace; color: #fff; padding-left: 10px; border-style: none; }");
+        self.STATUS_BAR.setReadOnly( True );        
+
+        # LOADING-BAR
+        self.LOADING_BAR                            =  QLineEdit("", self.FOOTER_FRAME );
+        self.LOADING_BAR.setGeometry(860, 0, 160, 30);
+        self.LOADING_BAR.setStyleSheet("QLineEdit{ background-color: #000; font-size: 12px; font-family: monospace; color: #fff; padding-left: 10px; border-style: none; border-left-style: solid; border-left-color: #aaa; border-left-width: 1px;  }");
+        self.LOADING_BAR.setReadOnly( True );        
+
+        # -------------------------------------------------------------------
+        self.COOKIE_JAR                             = QNetworkCookieJar(); # http://pyqt.sourceforge.net/Docs/PyQt4/qnetworkaccessmanager.html#setCookieJar
+
+        self.SETTINGS                               = Settings( self );
+        self.NOTEBOOK                               = NoteBook( self );
+        self.FILE_MANAGER                           = File_Manager( self );
+        self.CMD_MANAGER                            = CMD_Manager( self );
+
+        # -------------------------------------------------------------------
+        #self.Q_HISTORY                             = QWebHistory();
+
+        # ################################################################### 
+        # ################################################################### 
+        # ############### self.HISTORY MUST BE LAST ON INIT ################# 
+        # ################################################################### 
+        # ################################################################### 
+        self.LOG_HANDLER                            = Log_Handler( self );
+
+
+        self.HISTORY_HANDLER                        = History_Handler( self );
+
+        self.URL_BAR                                = Url_Bar( self )
+        self.URL_BAR.returnPressed.connect (self.GO_TO_URL );
+        self.URL_BAR.textChanged.connect( self.HISTORY_HANDLER.SEARCH );
+        
+        # -------------------------------------------------------------------
+        self.ON_URL_BAR_FOCUS_ACTION                = QAction(QIcon(""), '', self);
+        self.ON_URL_BAR_FOCUS_ACTION.setShortcut( "Alt+D" );
+        self.connect( self.ON_URL_BAR_FOCUS_ACTION, SIGNAL('triggered()'), self.URL_BAR.ON_FOCUS );
+        self.addAction( self.ON_URL_BAR_FOCUS_ACTION );
+
+        self.FIND_ON_PAGE_ACTION                    = QAction(QIcon(""), '', self);
+        self.FIND_ON_PAGE_ACTION.setShortcut( "Ctrl+F" );
+        self.connect( self.FIND_ON_PAGE_ACTION, SIGNAL('triggered()'), self.FIND_ON_PAGE );
+        self.addAction( self.FIND_ON_PAGE_ACTION );
+
+        self.ACTION_ESCAPE_ALL                      = QAction(QIcon(""), '', self);
+        self.ACTION_ESCAPE_ALL.setShortcut( "ESC" );
+        self.connect( self.ACTION_ESCAPE_ALL, SIGNAL('triggered()'), self.ESCAPE_FROM_ALL );
+        self.addAction( self.ACTION_ESCAPE_ALL );
+
+        # -------------------------------------------------------------------
+        # CONTROLS
+
+        # BACK
+        self.CONTROL_BACK_BTN                       = QPushButton("", self);
+        self.CONTROL_BACK_BTN.setGeometry(0, 0, 30, 30);
+        stl = "QPushButton{ background-color: #000; color: #fff; background-image: url('"+self.BROWSER_DATA_PATH+"imgs/back.png'); border-style: none; }";
+        self.CONTROL_BACK_BTN.setStyleSheet(stl);
+        self.connect( self.CONTROL_BACK_BTN, SIGNAL('clicked()') , self.WEB_VIEW.back );
+
+        # STOP
+        self.CONTROL_STOP_BTN                       = QPushButton("", self);
+        self.CONTROL_STOP_BTN.setGeometry(31, 0, 30, 30);
+        stl = "QPushButton{ background-color: #000; color: #fff; background-image: url('"+self.BROWSER_DATA_PATH+"imgs/stop.png'); border-style: none; }";
+        self.CONTROL_STOP_BTN.setStyleSheet(stl);
+        self.connect( self.CONTROL_STOP_BTN, SIGNAL('clicked()') , self.WEB_VIEW.stop );
+
+        # RELOAD
+        self.CONTROL_RELOAD_BTN                     = QPushButton("", self);
+        self.CONTROL_RELOAD_BTN.setGeometry(62, 0, 30, 30);
+        stl = "QPushButton{ background-color: #000; color: #fff; background-image: url('"+self.BROWSER_DATA_PATH+"imgs/reload.png'); border-style: none; }";
+        self.CONTROL_RELOAD_BTN.setStyleSheet(stl);
+        self.CONTROL_RELOAD_BTN.setShortcut("F5");
+        #self.CONTROL_RELOAD_BTN.setShortcut("CTRL+R");
+        self.connect( self.CONTROL_RELOAD_BTN, SIGNAL('clicked()') , self.PAGE_RELOAD );
+
+        self.CONTROL_FOREWARDE_BTN                  = QPushButton("", self);
+        self.CONTROL_FOREWARDE_BTN.setGeometry(93, 0, 30, 30);
+        stl = "QPushButton{ background-color: #000; color: #fff; background-image: url('"+self.BROWSER_DATA_PATH+"imgs/foreward.png'); border-style: none; }";
+        self.CONTROL_FOREWARDE_BTN.setStyleSheet(stl);
+        self.connect( self.CONTROL_FOREWARDE_BTN, SIGNAL('clicked()') , self.WEB_VIEW.forward );
+        
+        self.CONTROL_HOME_BTN                       = QPushButton("", self);
+        self.CONTROL_HOME_BTN.setGeometry(124, 0, 30, 30);
+        self.CONTROL_HOME_BTN.setShortcut("CTRL+H");
+        stl = "QPushButton{ background-color: #000; color: #fff; background-image: url('"+self.BROWSER_DATA_PATH+"imgs/home.png'); border-style: none; }";
+        self.CONTROL_HOME_BTN.setStyleSheet(stl);
+        self.connect( self.CONTROL_HOME_BTN, SIGNAL('clicked()') , self.WEB_VIEW.SET_MAIN_PAGE );
+
+        # -------------------------------------------------------------------
+        self.INTI();
+
+        # -------------------------------------------------------------------
+        
+    # =======================================================================
+    def SYNC( self ):
+
+        # -------------------------------------------------------------------
+        if not self.SPLASH.DONE:
+            #print("self.SPLASH.DONE: "+str(self.SPLASH.DONE))
+            self.SYNC_T.singleShot( self.SPLASH.R_SPEED, self.SYNC );
+
+        else:
+            self.SPLASH.hide();
+            self.show();
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def INTI(self):
+
+        # -------------------------------------------------------------------
+        try:
+
+
+            # -------------------------------------------------------
+            QWebSettings.globalSettings().setAttribute( QWebSettings.PluginsEnabled, True );
+            QWebSettings.globalSettings().setAttribute( QWebSettings.XSSAuditingEnabled, True );
+            #webView.settings().setAttribute( QWebSettings.PluginsEnabled, True);
+
+            # "http://www.youtube.com/watch?v=cTl3U6aSd2w&html5=True"
+
+            # -------------------------------------------------------
+            self.SPLASH.STATUS( self.LOG_TAG+": [INIT]" );
+            self.LOG_HANDLER.WRITE_LOG( "#"*90 );
+            self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: INIT:");
+            # -------------------------------------------------------
+            self.SETTINGS.LOAD();
+
+            self.LOAD_COOKIE();
+            self.WEB_VIEW.SET_MAIN_PAGE();
+            self.NOTEBOOK.LOAD();
+
+            # -------------------------------------------------------
+            # LOAD FAVS
+            try:
+
+                # FIXME: History OR Favorites ????
+
+                self.SPLASH.STATUS( self.LOG_TAG+": [FAVS]" );
+                self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: Loading: "+self.FAVORITES_FILE);
+                with open( self.FAVORITES_FILE, "r" ) as FS:
+                    for _item in FS:
+
+                        _item = _item.replace("\n", "").strip();
+
+                        if _item[0:1] == "#" or _item[0:2] == "//" or _item == "":
+                            continue;
+
+                        if self.HISTORY_HANDLER.ADD( _item ):
+                            self.HISTORY_HANDLER.ITEMS_TTL_AVAILABLE += 1;
+
+            except Exception as _err:
+
+                self.LOCAL_ERROR_LOG( "Cant load favorite list\n["+str(_err)+"]" );
+
+            # -------------------------------------------------------
+            self.HISTORY_HANDLER.SEARCH();
+            self.HISTORY_HANDLER.hide( );
+
+            self.ESCAPE_FROM_ALL();
+
+            self.SPLASH.STATUS( self.LOG_TAG+": [DONE]", True );
+            # -------------------------------------------------------
+
+            self.LOCAL_INFO_LOG( " Welcome ... [INIT]: Done" );
+            self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: INIT: DONE IN: ["+str( time() - self.START_TIME )+"] Sec\n");
+
+            # -------------------------------------------------------
+        except Exception as _err:
+
+            self.LOCAL_ERROR_LOG( str(_err) );
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def CREATE_TAB( self, _url=False ):
+
+        # -------------------------------------------------------------------
+        try:
+
+            # -----------------------------------------------------------
+            # SAVE STATES
+            self.SAVE_TAB_STATE();
+
+            # -----------------------------------------------------------
+            UID = self.GET_UID( 6 );
+
+            self.TAB_BARS[ UID ] = Tab_Container( self.TAB_BAR, UID=UID );        
+            self.TAB_BARS[ UID ].setGeometry( 0, 0, self.WIDTH, 614 );
+            self.TAB_BARS[ UID ].setStyleSheet( self.TAB_STYLE );
+
+            # -------------------------------------------------------------------
+            self.WEB_VIEWS[ UID ] = { "WEB_VIEW" : None, "WEB_PAGE" : None };
+            self.WEB_VIEWS[ UID ]["WEB_VIEW"] = Web_View( parent=self.TAB_BARS[ UID ], parentMain=self, UID=UID );
+            self.WEB_VIEWS[ UID ]["WEB_PAGE"] = Web_Page( parent=self.TAB_BARS[ UID ], parentMain=self, UID=UID );
+
+            self.WEB_VIEW = self.WEB_VIEWS[ UID ]["WEB_VIEW"];
+            self.WEB_PAGE = self.WEB_VIEWS[ UID ]["WEB_PAGE"];
+
+            self.WEB_VIEW.SET_PAGE( self.WEB_PAGE  );
+            self.WEB_PAGE.POST_INIT();
+
+            self.CURRENT_TAB_BAR_UID = UID;
+            
+            if False: # self.DEBUG:
+                self.TAB_BAR.addTab( self.TAB_BARS[ UID ], "TB:["+str( UID )+"]" );
+
+            else:
+                self.TAB_BAR.addTab( self.TAB_BARS[ UID ], "TB:[Loading]" );
+
+            # -----------------------------------------------------------
+            # RESORE STATES
+            self.RESTORE_TAB_STATE();
+
+            # -----------------------------------------------------------
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( str(_err), "CREATE_TAB:[0]" );
+
+        # -------------------------------------------------------------------
+        if not _url:
+            try:
+                
+                #self.WEB_VIEW.SET_MAIN_PAGE();
+                self.URL_BAR.SET_TEXT( "__exec:home" );
+                self.GO_TO_URL( );
+                #self.URL_BAR.SET_TEXT( "" );
+                self.URL_BAR.setFocus( );
+
+            except: pass;
+
+        else:
+            
+            try:
+                self.URL_BAR.SET_TEXT( _url )
+                self.GO_TO_URL( );
+            except: pass;
+
+        # -------------------------------------------------------------------
+        try:
+
+            self.TAB_BAR.setCurrentWidget( self.TAB_BARS[ UID ] );
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( str(_err), "CREATE_TAB:[1]" );
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def TAB_INDEX_CHANGED( self, index ):
+
+        # -------------------------------------------------------------------
+        try:
+
+            # -----------------------------------------------------------
+            # SAVE STATES
+            self.SAVE_TAB_STATE();
+
+            # -----------------------------------------------------------
+            UID = self.TAB_BAR.currentWidget().UID;
+            self.CURRENT_TAB_BAR_UID = UID;
+
+            self.WEB_VIEW = self.WEB_VIEWS[ UID ]["WEB_VIEW"];
+            self.WEB_PAGE = self.WEB_VIEWS[ UID ]["WEB_PAGE"];
+            self.WEB_VIEW.SET_PAGE( self.WEB_PAGE  );
+
+            # -----------------------------------------------------------
+            self.URL_BAR.SET_TEXT( str(self.WEB_VIEW.CURRENT_PAGE_URL.toString()) );
+            self.HISTORY_HANDLER.hide();
+
+            # -----------------------------------------------------------
+            # RESORE STATES
+            self.RESTORE_TAB_STATE();
+
+            # -----------------------------------------------------------
+
+        except Exception as _err:
+
+            try:
+                self.LOCAL_ERROR_LOG( str(_err), "TAB_INDEX_CHANGED" );
+
+            except: pass;
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def SAVE_TAB_STATE( self):
+
+        # -------------------------------------------------------------------
+        try:
+
+            if self.WEB_PAGE.SEARCH_INPUT_IS_OPEN:
+                self.WEB_PAGE.SEARCH_INPUT.hide();
+
+        except Exception as _err: pass;
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def RESTORE_TAB_STATE( self):
+
+        # -------------------------------------------------------------------
+        try:
+    
+            if self.WEB_PAGE.SEARCH_INPUT_IS_OPEN:
+                self.WEB_PAGE.SEARCH_INPUT.show();
+
+        except Exception as _err: pass;
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def CLOSE_TAB ( self ):
+
+        # -------------------------------------------------------------------
+        try:
+
+            if self.TAB_BAR.count() > 1:
+
+                UID   = self.TAB_BAR.currentWidget().UID;
+                #print( "CLOSE_TAB: ["+UID+", "+str(INDEX)+"]" );
+
+                self.WEB_VIEW.stop();
+
+                del self.WEB_VIEWS[ UID ];
+                self.TAB_BAR.removeTab( self.TAB_BAR.currentIndex() );
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( str(_err), "CLOSE_TAB: UID:["+UID+"]" );
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def FIND_ON_PAGE( self ):
+
+        # -------------------------------------------------------------------
+        self.WEB_PAGE.FIND_ON_PAGE();
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def LOAD_COOKIE(self):
+
+        # -------------------------------------------------------------------
+        try:
+
+            self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: COOKIE: Loading ");
+            cookies = []
+
+            FS = open( self.COOKIES_FILE, 'r');
+            for cookie in FS:
+                cookies += QNetworkCookie.parseCookies( cookie );
+
+            FS.close();
+
+            self.COOKIE_JAR.setAllCookies( cookies );
+            self.WEB_PAGE.networkAccessManager().setCookieJar( self.COOKIE_JAR );
+            self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: COOKIE: Done");
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( "LOAD_COOKIE: "+str(_err) );
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def SAVE_COOKIE(self):
+
+        # -------------------------------------------------------------------
+        try:
+    
+            self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: COOKIE: Saving ");
+
+            FS = open( self.COOKIES_FILE, "w");
+
+            for cookie in self.COOKIE_JAR.allCookies():
+
+                if not cookie.isSessionCookie():
+                    FS.write( cookie.toRawForm() + "\n" );
+
+            FS.close(); 
+            self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: COOKIE: Done ");
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( "SAVE_COOKIE: "+str(_err) );
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def PAGE_RELOAD(self):
+
+        # -------------------------------------------------------------------
+        self.WEB_VIEW.RELOAD();
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def ESCAPE_FROM_ALL_LOCAL(self):
+
+        # -------------------------------------------------------------------
+        self.LOCAL_INFO_LOG("ESCAPE_FROM_ALL_LOCAL: DISABLED");
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def ESCAPE_FROM_ALL(self):
+
+        # -------------------------------------------------------------------
+        try:
+
+            # -----------------------------------------------
+            self.WEB_PAGE.SEARCH_INPUT_CTRL("hide");
+
+            self.HISTORY_HANDLER.clearFocus();
+            self.HISTORY_HANDLER.hide();
+
+            self.WEB_PAGE.SEND_ESC();
+
+            # -----------------------------------------------
+            if self.HISTORY_HANDLER.HAS_FOCUS:
+                self.HISTORY_HANDLER.HAS_FOCUS = False;
+                self.URL_BAR.HAS_FOCUS = True;
+                self.URL_BAR.setFocus(  );
+
+            elif self.URL_BAR.HAS_FOCUS:
+                self.URL_BAR.HAS_FOCUS = False;
+                self.URL_BAR.setFocus( );
+
+            else:
+                self.WEB_VIEW.setFocus();
+
+            # -----------------------------------------------
+            if not self.REQUEST_HANDLER.KEEP_OPEN: 
+                self.REQUEST_HANDLER.HIDE_HEADERS();
+
+            if not self.SETTINGS.KEEP_OPEN: 
+                self.SETTINGS.HIDE_WINDOW();
+
+            if not self.NOTEBOOK.KEEP_OPEN: 
+                self.NOTEBOOK.HIDE_NOTES();
+
+            # -----------------------------------------------
+            if str(self.URL_BAR.text()).strip() == "":
+                self.URL_BAR.SET_TEXT( str(self.WEB_VIEW.CURRENT_PAGE_URL.toString()) );
+                self.HISTORY_HANDLER.hide();
+
+            # -----------------------------------------------
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( str(_err), "ESCAPE_FROM_ALL" );
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def GO_TO_URL(self, _url=None):
+
+        # -------------------------------------------------------------------
+        try:
+    
+            if _url is not None:
+                self.WEB_VIEW.LOAD( _url );
+                return;
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( str(_err), "GO_TO_URL:[0]" );
+            return;
+
+        # -------------------------------------------------------------------
+        _url = unicode( str(self.URL_BAR.text()).strip().replace("file://", "") );
+
+        self.HISTORY_HANDLER.hide();
+        self.WEB_VIEW.setFocus( True );
+
+        if _url == "":
+            return;
+
+        elif "__exec:" in _url:
+
+            _url = _url.replace("/__exec", "__exec")
+
+            self.CMD_MANAGER.PROCCESS( _url );
+            self.URL_BAR.SET_TEXT( _url );
+            return;
+        
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        self.LAST_URL_ADDR = _url;
+        self.URL_BAR.SET_TEXT( _url );
+        self.HISTORY_HANDLER.ADD( _url );
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        # HANDLE -> HTTP[S]
+        if _url[0:8] == "https://" or _url[0:7] == "http://" or _url[0:3] == "www": 
+
+            try:
+
+                self.WEB_VIEW.LOAD( unicode(_url) );
+
+            except Exception as _err:
+
+                self.LOCAL_ERROR_LOG( str(_err), "GO_TO_URL:[1]" );
+
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        # HANDLE -> FTP
+        elif _url[0:4] == "ftp." or _url[0:6] == "ftp://":
+        
+            try:
+
+                if "ftp://" not in _url and _url[0:4] == "ftp.":
+                    _url = "ftp://"+_url;
+
+                self.FTP.MK_CONNECT( unicode(_url) );
+                return;
+
+            except Exception as _err:
+
+                self.LOCAL_ERROR_LOG( str(_err), "GO_TO_URL:[2]" );
+                return;
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        # RENDER-SOURCE
+        elif _url[0:4] == "src:":
+ 
+            _url = str(_url[4:]);
+            HIGH_LIGHT = False;
+
+            if _url[0:2] == "h:":
+
+                _url = _url[2:];
+                HIGH_LIGHT = True;
+
+
+            if _url[0:8] == "https://" or _url[0:7] == "http://": 
+                #print('REMOTE_FILE: True')
+                if self.FILE_MANAGER.PROCCESS_FILE( _url, RENDER_SOURCE=True, REMOTE_FILE=True, HIGH_LIGHT=HIGH_LIGHT ):
+                    self.WEB_VIEW.LOAD( self.FILE_MANAGER.NEW_URL );
+
+            else:
+
+                #print('REMOTE_FILE: False')
+                if self.FILE_MANAGER.PROCCESS_FILE( _url, RENDER_SOURCE=True, REMOTE_FILE=False, HIGH_LIGHT=HIGH_LIGHT ):
+                    self.WEB_VIEW.LOAD( self.FILE_MANAGER.NEW_URL );
+
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        # LOCAL FILE
+        elif os.path.isfile( _url ):
+
+            # -----------------------------------------------------
+            if self.FILE_MANAGER.PROCCESS_FILE( _url, RENDER_SOURCE=False, REMOTE_FILE=False ):
+                self.WEB_VIEW.LOAD( self.FILE_MANAGER.NEW_URL );
+
+            else:
+                self.LOCAL_INFO_LOG( "self.FILE_MANAGER.PROCCESS_FILE: False" );
+                
+            # -----------------------------------------------------
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        # LOCAL DIR
+        elif os.path.isdir( _url ):
+
+            # -----------------------------------------------------------------
+            if self.FILE_MANAGER.CREATE_TREE( _url ):
+                self.WEB_VIEW.LOAD( self.FILE_MANAGER.NEW_URL );
+
+            else:
+                self.LOCAL_INFO_LOG( "self.FILE_MANAGER.CREATE_TREE: False" );
+            # -----------------------------------------------------------------
+
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        # SEARCH GOOGLE
+        else:
+    
+            try:
+        
+                _url = unicode( self.WEB_VIEW.URLS["search"].replace("[SEARCH]", _url ) ); 
+
+                #QByteArray encodedString = "ščťž";
+                #QTextCodec *codec = QTextCodec::codecForName("utf-8");
+                #QString string = codec->toUnicode(encodedString);
+
+                #str( QUrl.toPercentEncoding( _url, "/:{}", " ") );
+                #str( QString( _url ).toAscii() ); 
+
+                self.WEB_VIEW.LOAD( _url );
+        
+            except Exception as _err:
+
+                self.LOCAL_ERROR_LOG( str(_err), "GO_TO_URL:[3]" );
+                return;
+
+        # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+        # -------------------------------------------------------------------
+
+
+    # =======================================================================
+    def SHOW_QMESSAGE(self, _type="info", _msg="None"):
+
+        # ------------------------------------------------------------------
+        try:
+            _msg = str( _msg );
+            _msg = '<center><b style="color: #000; font-color: 16px;">'+_msg+'</b></center>'
+
+            if _type == "info":
+                _out = '<b style="font-color: 22px; color: #009;">Notification!</b><br/>';
+                reply = QMessageBox.information(self, "Notification!", _out+_msg, QMessageBox.Yes, QMessageBox.No)
+
+            elif _type == "warning":
+                _out = '<b style="font-color: 22px; color: #900;">Warning!</b><br/>';
+                reply = QMessageBox.warning(self, "Warning!", _out+_msg, QMessageBox.Yes, QMessageBox.No)
+
+            elif _type == "question":
+                _out = '<b style="font-color: 22px; color: #009;">Question!</b><br/>';
+                reply = QMessageBox.question(self, "", _out+_msg, QMessageBox.Yes, QMessageBox.No)
+
+            elif _type == "critical" or _type == "error":
+                _out = '<b style="font-color: 22px; color: #F00;">Critical!</b><br/>';
+                reply = QMessageBox.critical(self, "Critical Error!", _out+_msg, QMessageBox.Yes, QMessageBox.No)
+
+            else:
+                reply = QMessageBox.information(self, "Unknown", _out+_msg, QMessageBox.Yes, QMessageBox.No)
+
+            # --------------------------------------------------------------
+            # 16384 == yes / 65536 == no
+            if reply == QMessageBox.Yes:
+                return True;
+            else:
+                return False;
+
+        except Exception as _exception:
+
+            self.LOCAL_ERROR_LOG(" SHOW_QMESSAGE: "+str(_exception));
+            return False;
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def closeEvent(self, _event):
+        
+        # ------------------------------------------------------------------
+        self.SETTINGS.SAVE();
+        self.NOTEBOOK.SAVE();
+        self.SAVE_COOKIE();
+
+        self.CLEAN_UP();
+
+        """
+        if self.SHOW_QMESSAGE(_type="info", _msg=" Do you want exit ?"):
+
+            print("::::::::::::::::::::::::::::::: EXIT ::::::::::::::::::::::::::::::::::");
+            self.SAVE_COOKIE();
+            self.CLEAN_UP();
+        
+        else:
+            _event.ignore();
+            print(" EXIT Aborted !");
+            #self.setWindowState(Qt.WindowMinimized);
+        """
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def GET_TIME( self, _UNIX=False ):
+
+        # ------------------------------------------------------------------
+        if _UNIX: return int(time());        
+
+        return str( strftime("%H:%M:%S", localtime( time() )) );
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def GET_DATE( self ):
+
+        # ------------------------------------------------------------------
+        return str( strftime("%d-%b-%Y", localtime( time() )) );
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def GET_DATE_TIME( self ):
+
+        # ------------------------------------------------------------------
+        return str( strftime("%d-%b-%Y %H:%M:%S", localtime( time() )) );
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def GET_UID( self, _LEN=None ):
+
+        # ------------------------------------------------------------------
+        try:
+            _hash = self._MD5( str(time()) ).hexdigest();
+            #print("GET_UID: ["+_hash+"]");
+            return _hash if _LEN is None else _hash[0:int(_LEN)];
+
+        except Exception as _err:
+            self.LOCAL_ERROR_LOG( str(_err) );
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def CLEAN_UP(self):
+
+        # ------------------------------------------------------------------
+        self.WEB_VIEW.stop();
+
+        self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: CLEAN_UP: Remiving tmp files:");
+        os.system(" rm -rf "+self.TMP_DIR+"*" );
+
+        self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: CLEAN_UP: Remiving Objects:");
+        del self.REQUEST_HANDLER;
+        del self.NOTEBOOK;
+        del self.SETTINGS;
+        del self.HISTORY_HANDLER;
+        del self.WEB_VIEW;
+        del self.WEB_PAGE;
+        del self.FTP;
+        del self.MIME_HANDLER;
+        del self.FILE_MANAGER;
+
+        del self.DOWNLOAD_MANAGER.DOWNLOAD_SESSIONS;
+
+        self.LOG_HANDLER.WRITE_LOG( "Doc-Browser: CLEAN_UP: Done\n");
+        del self.LOG_HANDLER;
+
+        # ------------------------------------------------------------------
+
+    # =======================================================================
+    def LOCAL_INFO_LOG( self, _msg, METHOD=None ):
+
+        # -------------------------------------------------------------------
+        if METHOD is None:
+            self.LOG_HANDLER.LOG_DATA["info"].append( "['"+self.LOG_TAG+"']: "+_msg );
+        else:
+            self.LOG_HANDLER.LOG_DATA["info"].append( "['"+self.LOG_TAG+"."+METHOD+"']: "+_msg );
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def LOCAL_ERROR_LOG( self, _msg, METHOD=None ):
+
+        # -------------------------------------------------------------------
+        #if self.DEBUG or self.DEBUG_GLOBAL: self.DEBUGGER.DEBUG();
+        # -------------------------------------------------------------------
+        if METHOD is None:
+            self.LOG_HANDLER.LOG_DATA["error"].append( "['"+self.LOG_TAG+"']: "+_msg );
+        else:
+            self.LOG_HANDLER.LOG_DATA["error"].append( "['"+self.LOG_TAG+"."+METHOD+"']: "+_msg );
+
+
+        print( self.LOG_TAG+".LOCAL_ERROR_LOG: [DONE]" );
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def LOCAL_WARNING_LOG( self, _msg, METHOD=None ):
+
+        # -------------------------------------------------------------------
+        if METHOD is None:
+            self.LOG_HANDLER.LOG_DATA["warning"].append( "['"+self.LOG_TAG+"']: "+_msg );
+        else:
+            self.LOG_HANDLER.LOG_DATA["warning"].append( "['"+self.LOG_TAG+"."+METHOD+"']: "+_msg );
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+
+###################################################################################################
+class Tab_Container( QWidget ):
+
+    # =======================================================================
+    def __init__( self, parent, UID ):
+
+        # -------------------------------------------------------------------
+        QWidget.__init__( self, parent );
+        self.UID = UID;        
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+
+###################################################################################################
+class Splash(QFrame):
+
+    # =======================================================================
+    def __init__(self, parent=None):
+
+        # -------------------------------------------------------------------
+        QFrame.__init__(self, parent);
+
+        # -------------------------------------------------------------------
+        self.LOG_TAG                                = str(self.__class__.__name__).upper();
+
+        self.ABSPATH                                = os.path.dirname(os.path.abspath(__file__))+"/";
+        self.BROWSER_DATA_PATH                      = self.ABSPATH+"browser-data/";
+        self.ICON                                   = self.BROWSER_DATA_PATH+"imgs/Docs-Browser.png";
+        self.SPLASH_BG                              = self.BROWSER_DATA_PATH+"imgs/splash.png"
+
+        self.VERSION                                = "[null-dev]";
+        # -------------------------------------------------------------------
+        #self.setFrameStyle( QFrame.StyledPanel );
+        self.setStyleSheet( "QFrame{ font-weight: bold; font: 12px; font-family: monospace; color: #fff; background-color: #000; background-image: url('"+self.SPLASH_BG+"'); margin: 0px; padding: 0px; }" );
+
+        self.W                                      = 500;
+        self.H                                      = 260;
+
+        self.DESKTOP                                = QDesktopWidget();
+        self.SCREEN                                 = self.DESKTOP.screenGeometry();
+
+        self.SCREEN_W                               = int(self.SCREEN.width());
+        self.SCREEN_H                               = int(self.SCREEN.height());
+
+        self.ML                                     = int(self.SCREEN_W/2-self.W/2); 
+        self.MT                                     = int(self.SCREEN_H/2-self.H/2); 
+
+        self.setGeometry( self.ML, self.MT, self.W, self.H );
+        self.setFixedSize( self.W, self.H );
+        self.setWindowIcon( QIcon(self.ICON) );
+        self.setWindowFlags( Qt.SplashScreen );
+        
+        # -------------------------------------------------------------------
+        self.STL = "QLabel{ font-weight: bold; font-size: 12px; font-family: monospace; color: #FFF; background-color: #000; background-image: url(''); }";
+        self.HEADER                                 = QLabel( "", self );
+        self.HEADER.setGeometry( 300, 150, 180, 30 );
+        self.HEADER.setStyleSheet( self.STL );
+
+
+        self.FOOTER                                 = QLabel( "Loading ...", self );
+        self.FOOTER.setGeometry( 20, 230, 270, 30 );
+        self.FOOTER.setStyleSheet( self.STL );
+
+        # -------------------------------------------------------------------
+        self.DONE                                   = False;
+        self.GOT_LAST_UPDATE                        = False;
+        self.UPDATES                                = [];
+        self.R_SPEED                                = 90;
+        self.F                                      = True;
+        # -------------------------------------------------------------------
+        self.show( );
+        self.INIT();
+        # -------------------------------------------------------------------
+        self.SYNC_T = QTimer( self );
+        self.SYNC_T.singleShot( self.R_SPEED, self.SYNC );
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def SYNC( self ):
+
+        # -------------------------------------------------------------------
+        if not self.GOT_LAST_UPDATE or len(self.UPDATES) > 0:
+            self.FOOTER.setText( 'Loading: <i style=" font-weight: normal; color:#0F0;">'+self.UPDATES.pop()+'</i>' );
+            self.update();
+            self.SYNC_T.singleShot( self.R_SPEED, self.SYNC );
+
+        else:
+            self.DONE = True;
+
+        # -------------------------------------------------------------------
+
+
+    # =======================================================================
+    def INIT( self ):
+
+        # -------------------------------------------------------------------
+        try:
+
+            self.VERSION = "["+str(open(self.BROWSER_DATA_PATH+"version.file", "r" ).read())+"]";
+
+        except: pass;
+
+        # -------------------------------------------------------------------
+        self.setWindowTitle( "Docs-Browser: "+self.VERSION );
+        self.HEADER.setText( "Version: "+self.VERSION );
+
+        self.update( );
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+    def STATUS( self, _info, _last=False ):
+
+        # -------------------------------------------------------------------
+        if _last:
+            self.GOT_LAST_UPDATE = True;
+            print(" LAST STATUS-UPDATE!");
+
+        self.UPDATES.append( _info );
+
+        # -------------------------------------------------------------------
+
+    # =======================================================================
+
+###################################################################################################
+if __name__ == "__main__":
+
+
+    app = QApplication( sys.argv );
+    app.setApplicationVersion ("[Doc-Browser]");                            # QString version
+    #app.setAttribute (Qt.ApplicationAttribute attribute, bool on = True);   # Qt.ApplicationAttribute attribute, bool on = True
+    #app.setLibraryPaths (QStringList);                                      # QStringList
+    app.setOrganizationDomain ("[orgDomain]");                          # QString orgDomain
+    app.setOrganizationName ("[orgName]");                              # QString orgName
+
+    # QCoreApplication.setAttribute (Qt.ApplicationAttribute attribute, bool on = True)
+    # >>>>> 
+    # http://pyqt.sourceforge.net/Docs/PyQt4/qt.html#ApplicationAttribute-enum
+
+    # http://pyqt.sourceforge.net/Docs/PyQt4/qcoreapplication.html#applicationName-prop
+    # *** app.beep ();
+    # *** app.aboutQt()
+    # *** app.quit();
+
+    # ::::::::::::::::::::::::::::::::::::::
+    _Splash = Splash();
+    
+    DocBrowser = Doc_Browser( _Splash );
+
+    # ::::::::::::::::::::::::::::::::::::::
+
+    sys.exit( app.exec_() );
+
+###################################################################################################

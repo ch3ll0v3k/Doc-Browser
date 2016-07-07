@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo -e "--------------------------------------------------"
+echo  "rm -f ./modules/*pyc"
+rm -f ./modules/*.pyc
+echo -e "done\n"
+

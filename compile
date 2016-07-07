@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# ==================================================================================
+echo -e "============================================================"
+echo -e " Compiling ..."
+time res=$(python ./pyinstaller/pyinstaller.py \
+--clean \
+--onefile \
+--icon=./browser-data/imgs/Docs-Browser.png \
+--paths=/usr/lib/python2.7/dist-packages/PyQt4/ \
+--windowed ./Doc-Browser.spec)
+
+echo -e "\n Done ...\n"
+
+echo -e "\n Adding hooks ..."
+
+cp -r ./browser-data ./dist/
+cp -r ./storage ./dist/
+cp -r ./tmp ./dist/
+
+
+echo -e "\n Done ..."
+echo -e "\n To run ./Doc-Browser\n"
+echo -e "============================================================"
+
+
+
+# ==================================================================================

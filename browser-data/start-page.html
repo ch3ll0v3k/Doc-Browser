@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!-- =============================================================================== -->
+<head>
+
+    <!-- ............................................. -->
+    <meta charset="utf-8"/>
+    <title>Home:</title>
+    <!--
+    <meta name="viewport" content="width=<?=$WIDTH;?>, initial-scale=1">
+    <meta name="viewport" content="width=100, height=650">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width; height=device-height; maximum-scale=1.4; initial-scale=1.0; user-scalable=yes"/>
+    -->
+
+    <!-- ............................................. -->
+    <script type="text/javascript" src="js/temax-main.js"></script>
+    <script type="text/javascript" src="js/Docs-Browser.js"></script>
+
+    <!-- ............................................. -->
+    <link rel="stylesheet" type="text/css" href="css/Docs-Browser.css"/>
+    <!-- ............................................. -->
+    <script type="text/javascript">
+
+        var mini_console_output;
+
+        window.addEventListener('load', function(){
+
+            var mini_console_output = __byId("mini-console-output");
+
+            window.onkeyup = function(event){
+
+                mini_console_output.innerHTML = "event.keyCode: "+event.keyCode;
+
+            }
+
+
+        });
+
+
+
+    </script>
+    <!-- ............................................. -->
+
+</head>
+<!-- =============================================================================== -->
+<body>
+
+
+    <div id="browser-box">
+
+        <!-- ================================================= -->
+        <!--
+        <div id="nav-box">
+            link1 | link2 | link3
+        </div>
+
+        -->
+
+        <!-- ================================================= -->
+        <!-- http://youtube.com/results?search_query=jacksepticeye
+        -->
+
+        <form method="GET" action="http://youtube.com/results">
+            <input id="seach_input" type="text" name="search_query" value="" placeholder="Search on youtube" />
+        </form> 
+
+        <!-- ================================================= -->
+        <form method="GET" action="https://yandex.ru/search/">
+            <input id="seach_input" type="text" name="text" value="" placeholder="Search on yandex" />
+        </form> 
+
+        <!-- ================================================= -->
+        <div id="quick-link-box">
+
+        </div>
+        
+        <!-- ================================================= -->
+        <div id="mini-console-output">
+
+        </div>
+        <!-- ================================================= -->
+
+    </div>
+
+</body>
+<!-- =============================================================================== -->
+</html>
+
+<script type="text/javascript">
+
+// ------------------------------------------------------------------------------
+/*
+function setBold() {
+
+
+    iWin.focus();
+    var _elem = iWin.document.getElementById(" тут id елемента к которому вы обращаетесь");
+
+
+    _elem.style.textDecoration = "line-through";
+    _elem.style.fontWeight     = "bold";
+    _elem.style.fontSize       = "20px";
+    _elem.style.fontFamily     = "monospace";
+    _elem.style.color          = "#0F0";
+
+    if( _elem.value == undefined ){ // Если это [div]
+
+        // В верхний регист [ A,B,C ]
+        //_elem.innerHTML = _elem.innerHTML.toUpperCase();
+
+        // В нижний регист [ a,b,c ]
+        //_elem.innerHTML = _elem.innerHTML.toLowerCase();
+
+    }else{ // Если это [input]
+        
+        // В верхний регист [ A,B,C ]
+        //_elem.value = _elem.value.toUpperCase();
+
+        // В нижний регист [ a,b,c ]
+        //_elem.value = _elem.value.toLowerCase();
+
+    }
+
+}
+
+*/
+
+// ------------------------------------------------------------------------------
+/*
+
+*/
+
+// ------------------------------------------------------------------------------
+/*
+
+*/
+
+// ------------------------------------------------------------------------------
+/*
+
+*/
+// ------------------------------------------------------------------------------
+
+
+</script>
